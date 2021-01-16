@@ -1,0 +1,33 @@
+<template name="homepage">
+  <view class="homepage-list">
+    <view class="item" hover-class="btn-item">
+      一对一聊天
+    </view>
+    <view class="item" hover-class="btn-item">
+      自定义群聊
+    </view>
+    <view class="item" hover-class="btn-item">
+      多人群聊
+    </view>
+  </view>
+</template>
+<template name="remind">remind</template>
+<template name="mine">
+  <view class="mine">
+    <view class="contain">
+      <span>当前用户</span>
+      <view class="user">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <span>{{mine.userInfo.nickName}}</span>
+      <view class="btn" bindtap="close">
+        <view style="margin-top:20rpx;" bindtap="copy">
+          <i-tag class="i-tags" name="复制" type="border" color="green">
+            复制ID
+          </i-tag>
+        </view>
+      </view>
+    </view>
+    <i-message id="message" />
+  </view>
+</template>

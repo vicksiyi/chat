@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-card": "../../dist/card/index"
+  },
+  "navigationBarTitleText": "选择聊天对象..."
+}

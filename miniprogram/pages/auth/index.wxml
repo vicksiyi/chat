@@ -1,0 +1,3 @@
+<view class="img"><image src="cloud://weixin-gcm-dv4gu.7765-weixin-gcm-dv4gu-1258519704/login.gif"></image></view>
+<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权</button>
+<i-message id="message" />

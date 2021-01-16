@@ -1,0 +1,15 @@
+image {
+  width: 600rpx;
+  height: 1100rpx;
+}
+
+button {
+  background: #2d8cf0;
+  color: #fff;
+}
+
+.img{
+  width: 600rpx;
+  height: 650rpx;
+  margin: auto;
+}

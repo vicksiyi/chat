@@ -1,0 +1,18 @@
+<import src="../../template/mine/index.wxml" />
+<view wx:if="{{current == 'homepage'}}">
+  <template is="homepage" data="{{homepage}}"></template>
+</view>
+<view wx:if="{{current == 'remind'}}">
+  <template is="remind" data="{{remind}}"></template>
+</view>
+<view wx:if="{{current == 'mine'}}">
+  <template is="mine" data="{{mine}}"></template>
+</view>
+<view class="footer">
+  <i-tab-bar current="{{ current }}" color="#2d8cf0" bindchange="handleChange">
+    <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="首页"></i-tab-bar-item>
+    <i-tab-bar-item key="remind" icon="remind" current-icon="remind_fill" title="通知"></i-tab-bar-item>
+    <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
+  </i-tab-bar>
+</view>
+<i-message id="message" />

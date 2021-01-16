@@ -1,0 +1,42 @@
+.click {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  position: relative;
+}
+
+.click image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  animation: click 2s 0.2s linear infinite normal;
+  position: relative;
+}
+
+@keyframes click {
+  0% {
+    opacity: 0.5;
+    transform: scale3d(0.8, 0.8, 0.8)
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1)
+  }
+
+  100% {
+    opacity: 0.5;
+    transform: scale3d(0.8, 0.8, 0.8)
+  }
+}
+
+.click image:hover{
+  animation-play-state: paused;
+  top: 10rpx;
+}
+
+.view image{
+  float: right;
+  width: 60rpx;
+  height: 60rpx;
+}

@@ -1,0 +1,100 @@
+page {
+  background: #f8f8f9;
+}
+
+.list {
+  width: 700rpx;
+  /* background: #666; */
+  margin: 20rpx auto;
+  padding: 10rpx;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #666;
+  font-family: sans-serif;
+  /* width: 100%; */
+}
+
+.header .img image {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 20rpx;
+  margin: 15rpx;
+}
+
+.header .name {
+  width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header .time {
+  font-size: 25rpx;
+  text-align: right;
+}
+
+.content {
+  max-width: 500rpx;
+  /* height: 300rpx; */
+  background: #fff;
+  border-radius: 0 10rpx 10rpx 10rpx;
+  margin: auto;
+  word-wrap: break-word;
+  padding: 20rpx;
+  color: #495060;
+  margin-left: 80rpx;
+  text-align: left;
+  float: left;
+}
+
+
+.right .header-right {
+  display: flex;
+  float: right;
+  flex-direction: row;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.header-right .img image {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 20rpx;
+  margin: 15rpx;
+  text-align: right;
+}
+
+.header-right .time {
+  font-size: 25rpx;
+  text-align: right;
+  color: #666;
+}
+
+.header-right .name {
+  width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  color: #666;
+  font-family: sans-serif;
+}
+
+.right .right-content {
+  /* width: 500rpx; */
+  /* height: 300rpx; */
+  background: #19be6b;
+  border-radius: 10rpx 0 10rpx 10rpx;
+  margin: auto;
+  word-wrap: break-word;
+  padding: 20rpx;
+  float: right;
+  margin-right: 80rpx;
+  color: #fff;
+  /* text-align: right; */
+  text-align-last: left;
+  max-width: 500rpx;
+}

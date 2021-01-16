@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-message": "../../dist/message/index"
+  },
+  "navigationBarTitleText": "授权"
+}

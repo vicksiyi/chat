@@ -1,0 +1,3 @@
+<view class="click">
+  <image bindtap="click" src="../../images/click.png"></image>
+</view>

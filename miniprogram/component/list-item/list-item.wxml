@@ -1,0 +1,24 @@
+<view wx:if="{{float == 'left'}}" class="list left">
+  <view class="header">
+    <view class="img">
+      <image src="{{thumb}}"></image>
+    </view>
+    <view class="name">{{name}}</view>
+    <view class="time">{{time}}</view>
+  </view>
+  <view class="content">
+    {{content}}
+  </view>
+</view>
+<view wx:else class="list right">
+  <view class="header-right">
+    <view class="time">{{time}}</view>
+    <view class="name">{{name}}</view>
+    <view class="img">
+      <image src="{{thumb}}"></image>
+    </view>
+  </view>
+  <view class="right-content">
+    {{content}}
+  </view>
+</view>

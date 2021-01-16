@@ -1,0 +1,22 @@
+.content {
+  overflow: scroll;
+}
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.click {
+  position: fixed;
+  z-index: 999;
+  right: 50rpx;
+  bottom: 120rpx;
+}
+
+.click-list {
+  position: fixed;
+  right: 0rpx;
+  bottom: 200rpx;
+}

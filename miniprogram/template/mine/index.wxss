@@ -1,0 +1,124 @@
+/* homepage */
+.homepage-list {
+  margin: 30rpx auto;
+}
+
+.homepage-list .item {
+  width: 700rpx;
+  height: 200rpx;
+  background-image: url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fbpic.588ku.com%2Fback_pic%2F05%2F64%2F11%2F455b6281d7c9511.jpg&refer=http%3A%2F%2Fbpic.588ku.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1613358082&t=7e89a64d9454ac6aaef90d8184a6b77f);
+  text-align: center;
+  line-height: 200rpx;
+  margin: 50rpx auto;
+  border-radius: 20rpx;
+  color: #fff;
+  font-size: 50rpx;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  box-shadow: 1rpx 1rpx 3rpx 3rpx rgb(216, 216, 216);
+}
+
+.homepage-list .btn-item {
+  opacity: 0.5;
+}
+
+/* mine */
+.home-header swiper {
+  width: 100%;
+  height: 310rpx;
+}
+
+.home-header swiper image {
+  width: 100%;
+  height: 310rpx;
+}
+
+.list {
+  width: 700rpx;
+  margin: auto;
+  overflow: scroll;
+}
+
+.list-item {
+  width: 680rpx;
+  margin: 20rpx auto;
+  height: 300rpx;
+  background: #1c2438;
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 3px #ddd;
+  display: flex;
+  color: #fff;
+  flex-direction: row;
+}
+
+.list-item image {
+  width: 200rpx;
+  height: 260rpx;
+  margin: 20rpx;
+  box-shadow: 1px 1px 1px 1px #fff;
+}
+
+.list-item .list-2 {
+  width: 640rpx;
+  height: 260rpx;
+  margin: 20rpx;
+  font-size: 25rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.list-2 span {
+  font-size: 26rpx;
+  font-weight: 600;
+  margin-right: 10rpx;
+}
+
+.list-2 view:last-child {
+  height: 110rpx;
+  white-space: normal;
+}
+
+.mine .contain {
+  width: 520rpx;
+  /* height: 400rpx; */
+  background: #2d8cf0;
+  margin: 200rpx auto;
+  border-radius: 20rpx;
+  text-align: center;
+  color: #fff;
+  padding: 20rpx;
+  box-shadow: 5px 5px 3px#ddd;
+}
+
+.mine .contain span {
+  font-size: 30rpx;
+  font-family: cursive;
+}
+
+.mine .contain .user {
+  width: 150rpx;
+  height: 150rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 20rpx auto;
+}
+
+.user .btn {
+  margin-top: 20rpx;
+}
+
+.remind {
+  overflow: scroll;
+}
+
+.remind-tips {
+  text-align: center;
+}
+
+.remind-tips span {
+  font-size: 23rpx;
+  color: #ddd;
+  font-family: cursive;
+}

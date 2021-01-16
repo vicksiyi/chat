@@ -1,0 +1,10 @@
+<!-- 列表 -->
+<view class="item">
+  <i-card title="小微" extra="100条记录" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+    <view slot="footer">openid</view>
+  </i-card>
+</view>
+<!-- 添加聊天对象 -->
+<view class="add">
+  <image src="../../images/add.png"></image>
+</view>

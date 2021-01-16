@@ -1,0 +1,19 @@
+.item {
+  margin-top: 20rpx;
+}
+
+.add {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  position: fixed;
+  right: 60rpx;
+  bottom: 160rpx;
+}
+
+.add image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
