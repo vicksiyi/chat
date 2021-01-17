@@ -6,7 +6,8 @@ Page({
    */
   data: {
     inputValue: '',
-    height: ''
+    height: '',
+    show: false
   },
 
   /**
@@ -33,10 +34,12 @@ Page({
   send: function () {
     console.log(this.data.inputValue)
   },
-  click:function(){
-    console.log('click')
+  click: function () {
+    this.setData({
+      show: !this.data.show
+    })
   },
-  person:function(){
+  person: function () {
     console.log(123)
   }
 })

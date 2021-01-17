@@ -3,6 +3,7 @@
   height: 70rpx;
   background: #fff;
   border-radius: 20rpx 0 0 20rpx;
+  animation: mymove 1s forwards;
 }
 
 .list image {
@@ -15,4 +16,14 @@
 
 .list image:hover {
   top: 10rpx;
+}
+
+@keyframes mymove {
+  from {
+    margin-right: -180rpx;
+  }
+
+  to {
+    margin-right: 0;
+  }
 }

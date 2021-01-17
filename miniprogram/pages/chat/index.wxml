@@ -9,7 +9,7 @@
   </scroll-view>
 </view>
 <!-- click-list -->
-<view class="click-list">
+<view class="click-list" wx:if="{{show}}">
   <component-click-list>
     <image src="../../images/person.png" bindtap="person"></image>
     <image src="../../images/person.png"></image>
