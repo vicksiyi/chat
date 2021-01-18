@@ -2,6 +2,11 @@ page {
   background: #f8f8f9;
 }
 
+.all-content {
+  display: flex;
+  flex-direction: column;
+}
+
 .list {
   width: 700rpx;
   /* background: #666; */
@@ -96,5 +101,23 @@ page {
   color: #fff;
   /* text-align: right; */
   text-align-last: left;
+  max-width: 500rpx;
+}
+
+.content .img {
+  background: #fff;
+  padding: 10rpx;
+}
+
+.content .img image {
+  max-width: 500rpx;
+}
+
+.right-content .img {
+  background: #fff;
+  padding: 10rpx;
+}
+
+.right-content .img image {
   max-width: 500rpx;
 }

@@ -1,0 +1,38 @@
+<view class="content" style="height:{{height}}px;">
+  <scroll-view scroll-y="true" scroll-top='{{scrollTop}}' scroll-with-animation="true" enable-back-to-top='true'
+    scroll-with-animation="true" style="height:{{height}}px;">
+    <component-list>
+      <block wx:for="{{content}}">
+        <component-list-item name="{{item.name}}" type="{{item.type}}" thumb="{{item.avatarurl}}" time="{{item.time}}"
+          content="{{item.content}}" float="{{item.openid == _openid ? '':'left'}}">
+        </component-list-item>
+      </block>
+    </component-list>
+  </scroll-view>
+</view>
+<!-- 当前在线人数 -->
+<view wx:if="{{showPerson}}" class="user">
+  <span>当前人数:{{user.length}}</span>
+  <block wx:for="{{user}}">
+    <view class="list">
+      <image src="{{item.avatarUrl}}"></image>
+      <span>{{item.name}}</span>
+    </view>
+  </block>
+</view>
+<!-- click-list -->
+<view class="click-list" wx:if="{{show}}">
+  <component-click-list>
+    <image src="../../images/person.png" bindtap="person"></image>
+    <image src="../../images/photo.png" bindtap="photo"></image>
+    <image src="../../images/person.png"></image>
+  </component-click-list>
+</view>
+<!-- click -->
+<view class="click">
+  <component-click bind:click="click"></component-click>
+</view>
+<view class="footer">
+  <component-send bind:change="inputChange" value="{{inputValue}}" bind:send="send"></component-send>
+</view>
+<i-message id="message" />

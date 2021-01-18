@@ -1,0 +1,73 @@
+.content {
+  overflow: scroll;
+}
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.click {
+  position: fixed;
+  z-index: 999;
+  right: 50rpx;
+  bottom: 120rpx;
+}
+
+.click-list {
+  position: fixed;
+  right: 0rpx;
+  bottom: 200rpx;
+}
+
+.user {
+  background: rgba(0, 0, 0, .5);
+  width: 250rpx;
+  max-height: 400rpx;
+  overflow: scroll;
+  position: fixed;
+  bottom: 340rpx;
+  right: 0;
+  padding: 25rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  animation: mymove 1s forwards;
+}
+
+@keyframes mymove {
+  from {
+    margin-right: -250rpx;
+  }
+
+  to {
+    margin-right: 0;
+  }
+}
+
+.user .list {
+  width: 200rpx;
+  height: 100rpx;
+  color: #fff;
+}
+
+.user>span {
+  color: #fff;
+  font-family: monospace;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 400;
+  margin: 20rpx;
+}
+
+.user .list image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx;
+  border-radius: 10rpx;
+}
+
+.user .list>span {
+  float: right;
+  line-height: 100rpx;
+  width: 100rpx;
+}

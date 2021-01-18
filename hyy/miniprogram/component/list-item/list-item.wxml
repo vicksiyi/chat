@@ -1,0 +1,36 @@
+<view class="all-content">
+  <view wx:if="{{float == 'left'}}" class="list left">
+    <view class="header">
+      <view class="img">
+        <image src="{{thumb}}"></image>
+      </view>
+      <view class="name">{{name}}</view>
+      <view class="time">{{time}}</view>
+    </view>
+    <view wx:if="{{type == 'text'}}" class="content">
+      {{content}}
+    </view>
+    <view wx:else class="content">
+      <view class="img">
+        <image src="{{content}}"></image>
+      </view>
+    </view>
+  </view>
+  <view wx:else class="list right">
+    <view class="header-right">
+      <view class="time">{{time}}</view>
+      <view class="name">{{name}}</view>
+      <view class="img">
+        <image src="{{thumb}}"></image>
+      </view>
+    </view>
+    <view wx:if="{{type == 'text'}}" class="right-content">
+      {{content}}
+    </view>
+    <view wx:else class="right-content">
+      <view class="img">
+        <image src="{{content}}"></image>
+      </view>
+    </view>
+  </view>
+</view>

@@ -11,6 +11,10 @@ Component({
     buttonName: {
       type: String,
       value: '发送'
+    },
+    value: {
+      type: String,
+      value: ''
     }
   },
 
@@ -25,10 +29,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    inputChange:function(event){
+    inputChange: function (event) {
       this.triggerEvent('change', event);
     },
-    send:function(event){
+    send: function (event) {
       this.triggerEvent('send', event);
     }
   }

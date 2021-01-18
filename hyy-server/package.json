@@ -1,0 +1,21 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "nodemon index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "js-base64": "^3.6.0",
+        "md5": "^2.3.0",
+        "nodejs-websocket": "^1.7.2",
+        "nodemon": "^2.0.6",
+        "oracledb": "^5.1.0",
+        "websocket": "^1.0.33"
+    }
+}

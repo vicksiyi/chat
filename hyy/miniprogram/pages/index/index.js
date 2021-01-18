@@ -55,5 +55,10 @@ Page({
         });
       }
     })
+  },
+  navchat:function(){
+    wx.navigateTo({
+      url: '../chat/index',
+    })
   }
 })

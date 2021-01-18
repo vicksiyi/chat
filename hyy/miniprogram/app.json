@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/chat/index",
     "pages/onechat/index",
-    "pages/index/index",
     "pages/auth/index",
     "pages/morechat/index"
   ],

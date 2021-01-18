@@ -1,4 +1,0 @@
-<view class="send">
-  <input bindinput="inputChange" placeholder="{{placeholder}}"/>
-  <button bindtap="send">{{buttonName}}</button>
-</view>
