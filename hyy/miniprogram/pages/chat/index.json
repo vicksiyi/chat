@@ -5,6 +5,8 @@
     "component-list-item": "../../component/list-item/list-item",
     "component-click": "../../component/click/click",
     "component-click-list": "../../component/click-list/click-list",
-    "i-message": "../../dist/message/index"
-  }
+    "i-message": "../../dist/message/index",
+    "component-show-user":"../../component/show-user/show-user"
+  },
+  "navigationBarTitleText": "大群聊"
 }

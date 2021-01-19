@@ -41,6 +41,12 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    // 查看图片
+    showImage: function () {
+      wx.previewImage({
+        current: this.properties.content,
+        urls: [this.properties.content]
+      })
+    }
   }
 })

@@ -1,0 +1,9 @@
+<view class="item">
+  <view class="img">
+    <image src="{{data.avatarurl}}"></image>
+  </view>
+  <view class="name">
+    <view>{{data.name}}</view>
+    <view>{{data.content}}</view>
+  </view>
+</view>

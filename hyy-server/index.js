@@ -7,10 +7,15 @@ var server = ws.createServer(function (conn) {
     let openId = conn.headers['openid-userinfo'];
     let avatarUrl = conn.headers['avatarurl-userinfo'];
     user.push({ name, openId, avatarUrl });
+    // 加入房间
+    broadcast({
+        name: name,
+        openid: openId,
+        avatarurl: avatarUrl
+    }, { type: 'add', content: '加入房间' });
     conn.on("text", function (data) {
         let dataParse = JSON.parse(data)
-        console.log(dataParse, user)
-        if (dataParse.type == 'heart') { conn.sendText(JSON.stringify({...dataParse,user})) }
+        if (dataParse.type == 'heart') { conn.sendText(JSON.stringify({ ...dataParse, user })) }
         else {
             broadcast({
                 name: conn.headers['name-userinfo'],
@@ -31,9 +36,11 @@ var server = ws.createServer(function (conn) {
         user.map((value, key) => {
             if (conn.headers['openid-userinfo'] == value.openId) { user.splice(key, 1) }
         });
-        // broadcast(JSON.stringify({
-        //     str: '离开了房间'
-        // }))
+        broadcast({
+            name: name,
+            openid: openId,
+            avatarurl: avatarUrl
+        }, { type: 'add', content: '离开群聊' });
     })
 }).listen(8080, function () {
     console.log('the ws port running');
@@ -41,6 +48,7 @@ var server = ws.createServer(function (conn) {
 
 function broadcast(user, msg) {
     let data = { ...user, ...msg }
+    console.log(data)
     server.connections.forEach(function (conn) {
         conn.sendText(JSON.stringify(data))
     })

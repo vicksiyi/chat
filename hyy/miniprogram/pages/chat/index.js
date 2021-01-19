@@ -28,7 +28,9 @@ Page({
     content: [],
     scrollTop: 0,
     user: [],
-    showPerson: false
+    showPerson: false,
+    showUser: false,
+    addUser: {}
   },
 
   /**
@@ -36,9 +38,6 @@ Page({
    */
   onLoad: function (options) {
     let _this = this;
-    wx.setNavigationBarTitle({
-      title: 'title',
-    })
     wx.getSystemInfo({
       success(res) {
         _this.setData({
@@ -127,6 +126,7 @@ Page({
     let _this = this;
     wx.chooseImage({
       count: 1,
+      sizeType: ['compressed'],
       success: res => {
         wx.getFileSystemManager().readFile({
           filePath: res.tempFilePaths[0], //选择图片返回的相对路径
@@ -191,10 +191,12 @@ Page({
         'avatarUrl-userInfo': _avatarUrl
       },
       success: (res) => {
-        $Message({
-          content: '加入群聊成功',
-          type: 'success'
-        });
+        // console.log(res)
+        // $Message({
+        //   content: '加入群聊成功',
+        //   type: 'success'
+        // });
+        console.log('连接成功')
       },
       fail: (err) => {
         wx.showToast({
@@ -207,6 +209,10 @@ Page({
     // 连接成功
     wx.onSocketOpen((res) => {
       console.log('WebSocket 成功连接', res)
+      $Message({
+        content: '加入群聊成功',
+        type: 'success'
+      });
       // 进入聊天
       _this.resMes(_openid, _name, _avatarUrl)
       // 开始心跳
@@ -215,8 +221,14 @@ Page({
     //连接失败
     wx.onSocketError((err) => {
       console.log('websocket连接失败', err);
+      $Message({
+        content: '加入群聊失败',
+        type: 'error'
+      });
       // twice = 0
-      _this.connectStart(_openid, _name, _avatarUrl)
+      setTimeout(() => {
+        _this.connectStart(_openid, _name, _avatarUrl)
+      }, 2000)
     })
     // deal
     _this.deal()
@@ -255,6 +267,9 @@ Page({
           content: '重新连接中ing...',
           type: 'warning'
         });
+        _this.setData({
+          user: []
+        })
         if (heartBeatFailCount > 2) {
           // 重连
           console.log('socket心跳失败')
@@ -313,16 +328,26 @@ Page({
     })
     ws.onMessage(onMessage => {
       let data = JSON.parse(onMessage.data);
-      if (data.type != 'heart') {
+      if (data.type == 'heart') {
+        _this.setData({
+          user: data.user
+        })
+      } else if (data.type == 'add') {
+        _this.setData({
+          showUser: true,
+          addUser: data
+        })
+        setTimeout(() => {
+          _this.setData({
+            showUser: false
+          })
+        }, 3000)
+      } else {
         let content = _this.data.content;
         content.push(data);
         _this.setData({
           content: content,
           scrollTop: content.length * 1000
-        })
-      } else {
-        _this.setData({
-          user: data.user
         })
       }
       // console.log(res, "接收到了消息")

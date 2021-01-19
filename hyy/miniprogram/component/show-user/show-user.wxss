@@ -1,0 +1,66 @@
+.item {
+  height: 100rpx;
+  width: 200rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  box-shadow: 1rpx 1rpx 3rpx 3rpx rgb(216, 216, 216);
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  right: 30rpx;
+  top: 200rpx;
+  animation: myshow 3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+.item .img image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 10rpx;
+}
+
+.item .name view {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+  /* animation: mymove 1s forwards; */
+}
+
+.item .name view:first-child {
+  font-size: 30rpx;
+}
+
+.item .name view:last-child {
+  font-size: 20rpx;
+}
+
+@keyframes myshow {
+  0% {
+    transform: scale(0);
+    right: -230rpx;
+    opacity: 1;
+    top: 200rpx;
+  }
+
+  40% {
+    transform: scale(1);
+    right: 30rpx;
+    opacity: 1;
+    top: 200rpx;
+  }
+
+  70% {
+    transform: scale(1);
+    right: 30rpx;
+    opacity: 1;
+    top: 200rpx;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+    top: 100rpx;
+  }
+}

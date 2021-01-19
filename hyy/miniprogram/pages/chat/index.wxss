@@ -71,3 +71,9 @@
   line-height: 100rpx;
   width: 100rpx;
 }
+
+/* .show-user {
+  position: fixed;
+  right: 30rpx;
+  top: 200rpx;
+} */

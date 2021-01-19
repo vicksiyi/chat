@@ -20,6 +20,9 @@
     </view>
   </block>
 </view>
+<view class="show-user" wx:if="{{showUser}}">
+  <component-show-user data="{{addUser}}"></component-show-user>
+</view>
 <!-- click-list -->
 <view class="click-list" wx:if="{{show}}">
   <component-click-list>
