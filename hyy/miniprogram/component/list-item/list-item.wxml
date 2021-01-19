@@ -10,10 +10,13 @@
     <view wx:if="{{type == 'text'}}" class="content">
       {{content}}
     </view>
-    <view wx:else class="content">
+    <view wx:if="{{type == 'image'}}" class="content">
       <view class="img">
-        <image bindtap="showImage"  src="{{content}}"></image>
+        <image bindtap="showImage" src="{{content}}"></image>
       </view>
+    </view>
+    <view wx:if="{{type == 'audio'}}" class="content" bindtap="audioPlay">
+      <image src="../../images/voiceyou.png"></image>播放
     </view>
   </view>
   <view wx:else class="list right">
@@ -27,10 +30,14 @@
     <view wx:if="{{type == 'text'}}" class="right-content">
       {{content}}
     </view>
-    <view wx:else class="right-content">
+    <view wx:if="{{type == 'image'}}" class="right-content">
       <view class="img">
-        <image bindtap="showImage"  src="{{content}}"></image>
+        <image bindtap="showImage" src="{{content}}"></image>
       </view>
+    </view>
+    <view wx:if="{{type == 'audio'}}" class="right-content" bindtap="audioPlay">
+      <image src="../../images/voiceme.png"></image>播放
     </view>
   </view>
 </view>
+<!-- <i-message id="message" /> -->

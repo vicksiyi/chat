@@ -28,7 +28,7 @@
   <component-click-list>
     <image src="../../images/person.png" bindtap="person"></image>
     <image src="../../images/photo.png" bindtap="photo"></image>
-    <image src="../../images/person.png"></image>
+    <image src="../../images/voice.png" bindtap="voice"></image>
   </component-click-list>
 </view>
 <!-- click -->
@@ -38,4 +38,7 @@
 <view class="footer">
   <component-send bind:change="inputChange" value="{{inputValue}}" bind:send="send"></component-send>
 </view>
+<!-- voice -->
+<component-alert wx:if="{{showVoice}}" num="{{num}}" bind:voiceSend="voiceSend" bind:voiceClear="voiceClear">
+</component-alert>
 <i-message id="message" />

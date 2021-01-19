@@ -121,3 +121,14 @@ page {
 .right-content .img image {
   max-width: 500rpx;
 }
+
+.right-content image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+
+.content image {
+  width: 80rpx;
+  height: 80rpx;
+}

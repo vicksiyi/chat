@@ -12,6 +12,8 @@ var heart = ''  // 心跳失败次数
 var heartBeatFailCount = 0 // 终止心跳
 var heartBeatTimeOut = null; // 终止重新连接
 var connectSocketTimeOut = null;
+var voiceInterval = null
+const recorderManager = wx.getRecorderManager()
 Page({
 
   /**
@@ -30,7 +32,9 @@ Page({
     user: [],
     showPerson: false,
     showUser: false,
-    addUser: {}
+    addUser: {},
+    num: 0,
+    showVoice: false
   },
 
   /**
@@ -159,6 +163,103 @@ Page({
           type: 'warning'
         })
       }
+    })
+  },
+  voice: function () {
+    let _this = this;
+    this.setData({
+      showVoice: true
+    })
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.record']) {
+          recorderManager.start()
+          recorderManager.onStart(() => {
+            console.log('recorder start')
+          })
+          voiceInterval = setInterval(() => {
+            _this.setData({
+              num: _this.data.num + 1,
+            })
+            if (_this.data.num >= 50) { // 最多录音50s
+              this.voiceSend();
+            }
+          }, 1000)
+        } else {
+          $Message({
+            content: '请打开『右上角』->『设置』开启录音权限',
+            type: 'warning'
+          })
+          _this.setData({
+            showVoice: false
+          })
+        }
+      }
+    })
+  },
+  voiceClear: function () {
+    clearInterval(voiceInterval)
+    recorderManager.stop() // 结束录音
+    this.setData({
+      showVoice: false,
+      num: 0
+    })
+  },
+  voiceSend: async function () {
+    let _this = this;
+    clearInterval(voiceInterval)
+    recorderManager.stop()
+    let data = await this.getVoice();
+    wx.getFileSystemManager().readFile({
+      filePath: data.tempFilePath, //选择图片返回的相对路径
+      encoding: 'base64', //编码格式
+      success: res => { //成功的回调
+        // let base64Audio = `data:audio/${data.tempFilePath.split('.')[data.tempFilePath.split('.').length - 1]};base64,${res.data}`
+        let base64Audio = res.data
+        wx.cloud.callFunction({
+          // 需调用的云函数名
+          name: 'uploadAudio',
+          // 传给云函数的参数
+          data: {
+            base64Audio: base64Audio,
+            openId: this.data._openid,
+            suffix: data.tempFilePath.split('.')[data.tempFilePath.split('.').length - 1]
+          },
+          // 成功回调
+          complete: function (res) {
+            console.log(base64Audio)
+            console.log(res)
+            let msg = {
+              type: 'audio',
+              content: res.result.fileID,
+              time: formatTime(new Date())
+            }
+            _this.sendSocketMessage({
+              msg: JSON.stringify(msg),
+              success: () => {
+                console.log("客户端发送成功")
+              },
+              fail: function (err) {
+                $Message({
+                  content: '发送失败',
+                  type: 'error'
+                });
+              }
+            })
+          }
+        })
+      }
+    })
+    this.setData({
+      showVoice: false,
+      num: 0
+    })
+  },
+  getVoice: function () {
+    return new Promise((resolve, rejct) => {
+      recorderManager.onStop((res) => {
+        resolve(res);
+      })
     })
   },
   urlTobase64: function (url) {

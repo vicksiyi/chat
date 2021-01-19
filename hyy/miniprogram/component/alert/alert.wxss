@@ -1,0 +1,56 @@
+.alert {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  z-Index: 999;
+}
+
+.window {
+  width: 400rpx;
+  margin: 300rpx auto;
+  height: 450rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  text-align: center;
+}
+
+.window image {
+  height: 200rpx;
+  width: 300rpx;
+  margin: 50rpx;
+}
+
+.window span {
+  width: 400rpx;
+  height: 30rpx;
+}
+
+/* .window span:last-child {
+  font-size: 20rpx;
+} */
+.mode {
+  height: 70rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.mode view {
+  width: 150rpx;
+  height: 60rpx;
+  margin: 5rpx auto;
+  border: 1rpx solid #666;
+  line-height: 60rpx;
+}
+
+.mode view:first-child {
+  background: #19be6b;
+  color: #fff;
+}
+
+.mode view:last-child {
+  background: #fff;
+}

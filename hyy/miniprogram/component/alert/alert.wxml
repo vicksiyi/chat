@@ -1,0 +1,10 @@
+<view class="alert">
+  <view class="window">
+    <image src="../../images/voice.gif"></image>
+    <span>录音{{num}}s</span>
+    <view class="mode">
+      <view bindtap="voiceSend">发送</view>
+      <view bindtap="voiceClear">取消</view>
+    </view>
+  </view>
+</view>
