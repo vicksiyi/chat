@@ -1,4 +1,5 @@
 const { $Message } = require('../../dist/base/index');
+let innerAudioContext = wx.createInnerAudioContext()
 // component/list-item/list-item.js
 Component({
   /**
@@ -35,7 +36,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    show: false
+    show: false,
+    status: 'start',
+    msg: '播放'
   },
 
   /**
@@ -49,17 +52,33 @@ Component({
         urls: [this.properties.content]
       })
     },
-    audioPlay: function () {
+    audioPlay: async function () {
       let _this = this
-      const innerAudioContext = wx.createInnerAudioContext()
-      innerAudioContext.autoplay = true
       innerAudioContext.src = this.properties.content
+      // innerAudioContext.play();
+      innerAudioContext.autoplay = true
+      $Message({
+        content: '开始播放...',
+        type: 'success'
+      });
+      // 无法控制多个状态
+      // if(this.data.status == 'stop') {  
+      //   _this.audioStop();
+      //   return false;
+      // }
+      // if(this.data.status == 'continue') {
+      //   _this.audioContinue();
+      //   return false;
+      // }
+      _this.setData({
+        // msg: '暂停',
+        status: 'stop'
+      })
       innerAudioContext.onPlay((res) => {
-        console.log('开始播放', res)
-        $Message({
-          content: '开始播放...',
-          type: 'success'
-        });
+        _this.setData({
+          // msg: '暂停',
+          status: 'stop'
+        })
       })
       innerAudioContext.onEnded(() => {
         console.log('结束')
@@ -67,10 +86,44 @@ Component({
           content: '播放完成...',
           type: 'success'
         });
+        _this.setData({
+          // msg: '播放',
+          status: 'start'
+        })
       })
       innerAudioContext.onError((res) => {
         console.log(res.errMsg)
         console.log(res.errCode)
+        _this.setData({
+          // msg: '播放',
+          status: 'start'
+        })
+        $Message({
+          content: '播放出错!',
+          type: 'error'
+        });
+      })
+    },
+    audioStop: function () {
+      innerAudioContext.pause()
+      $Message({
+        content: '暂停播放...',
+        type: 'success'
+      });
+      this.setData({
+        // msg: '继续',
+        status: 'continue'
+      })
+    },
+    audioContinue: function () {
+      innerAudioContext.play()
+      $Message({
+        content: '继续播放...',
+        type: 'success'
+      });
+      this.setData({
+        // msg: '暂停',
+        status: 'stop'
       })
     }
   }

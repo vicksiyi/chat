@@ -16,7 +16,10 @@
       </view>
     </view>
     <view wx:if="{{type == 'audio'}}" class="content" bindtap="audioPlay">
-      <image src="../../images/voiceyou.png"></image>播放
+      <image bindtap="audioPlay" src="../../images/voiceyou.png"></image>
+      <!-- <image wx:if="{{status == 'start'}}"  bindtap="audioPlay" src="../../images/voiceyou.png"></image>
+      <image wx:if="{{status == 'continue'}}" bindtap="audioStop" src="../../images/continueyou.png"></image>
+      <image wx:if="{{status == 'stop'}}" bindtap="audioContinue" src="../../images/stopyou.png"></image>{{msg}} -->
     </view>
   </view>
   <view wx:else class="list right">
@@ -35,8 +38,11 @@
         <image bindtap="showImage" src="{{content}}"></image>
       </view>
     </view>
-    <view wx:if="{{type == 'audio'}}" class="right-content" bindtap="audioPlay">
-      <image src="../../images/voiceme.png"></image>播放
+    <view wx:if="{{type == 'audio'}}" class="right-content">
+      <image bindtap="audioPlay" src="../../images/voiceme.png"></image>
+      <!-- <image wx:if="{{status == 'start'}}" bindtap="audioPlay" src="../../images/voiceme.png"></image>
+      <image wx:if="{{status == 'continue'}}" bindtap="audioContinue" src="../../images/continueme.png"></image>
+      <image wx:if="{{status == 'stop'}}" bindtap="audioStop" src="../../images/stopme.png"></image>{{msg}} -->
     </view>
   </view>
 </view>
