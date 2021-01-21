@@ -122,3 +122,41 @@
   color: #ddd;
   font-family: cursive;
 }
+
+.remind-list {
+  height: auto;
+  width: 100%;
+}
+
+.remind-list .card {
+  /* float: left; */
+  height: 100rpx;
+  margin: 50rpx auto;
+  width: 680rpx;
+  box-shadow: 10rpx 10rpx 2rpx 2rpx #f8f8f9;
+  border-radius: 10rpx;
+  line-height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  line-height: 100rpx;
+}
+
+.remind-list .card .msg {
+  width: 580rpx;
+  overflow: hidden;
+  color: #666;
+  font-family: cursive;
+}
+
+.remind-list .card .msg span {
+  font-size: 40rpx;
+  padding: 20rpx;
+  color: #ff9900;
+}
+
+.remind-list image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  margin: 10rpx;
+}

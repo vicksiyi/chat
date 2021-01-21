@@ -14,7 +14,18 @@
     </view>
   </view>
 </template>
-<template name="remind">remind</template>
+<template name="remind">
+  <view class="remind-list">
+    <block wx:for="{{remind.wait}}">
+      <view class="card">
+        <view class="img">
+          <image src="{{item.avatarUrl}}"></image>
+        </view>
+        <view class="msg"><span>{{item.name}}</span>等待接入...</view>
+      </view>
+    </block>
+  </view>
+</template>
 <template name="mine">
   <view class="mine">
     <view class="contain">

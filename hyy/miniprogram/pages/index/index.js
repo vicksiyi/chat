@@ -19,7 +19,10 @@ Page({
     current: 'homepage',
     mine: {
       openid: '',
-      userInfo: {}
+      userInfo: {},
+    },
+    remind: {
+      wait: [{ name: "小薇", openId: "ohUw65LWnKW9zw10EuOJFs7hNyqA", avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/qs9tqGjWeibY…c93hjBsj9R58ygxmRMMictmbAGiciaFtqsXWTxxz4nqwQ/132" }]
     }
   },
   onShow: function () {
