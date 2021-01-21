@@ -4,7 +4,8 @@
     "pages/chat/index",
     "pages/onechat/index",
     "pages/auth/index",
-    "pages/morechat/index"
+    "pages/morechat/index",
+    "pages/waitchat/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

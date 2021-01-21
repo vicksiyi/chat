@@ -1,0 +1,1 @@
+<component-send placeholder="聊天对象ID" bind:change="inputChange" buttonName="搜索" value="{{inputValue}}" bind:send="search"></component-send>

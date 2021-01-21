@@ -14,6 +14,7 @@ var heartBeatTimeOut = null; // 终止重新连接
 var connectSocketTimeOut = null;
 var voiceInterval = null
 const recorderManager = wx.getRecorderManager()
+var errorConnectTimeOut = null;
 Page({
 
   /**
@@ -327,7 +328,7 @@ Page({
         type: 'error'
       });
       // twice = 0
-      setTimeout(() => {
+      errorConnectTimeOut = setTimeout(() => {
         _this.connectStart(_openid, _name, _avatarUrl)
       }, 2000)
     })
@@ -420,7 +421,7 @@ Page({
       //   content: '连接关闭',
       //   type: 'error'
       // });
-      // socketOpen = false;
+      socketOpen = false;
       // that.connectStart()
     })
     ws.onError(onError => {
@@ -455,7 +456,11 @@ Page({
     })
   },
   onUnload: function () {
+    console.log('onUnload')
     clearTimeout(heartBeatTimeOut)
+    setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
+      clearTimeout(errorConnectTimeOut)
+    }, 2000)
     wx.closeSocket()
   }
 })

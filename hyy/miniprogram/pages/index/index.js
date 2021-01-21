@@ -56,9 +56,14 @@ Page({
       }
     })
   },
-  navchat:function(){
+  navonechat: function () {
     wx.navigateTo({
       url: '../chat/index',
+    })
+  },
+  navwaitchat: function () {
+    wx.navigateTo({
+      url: '../waitchat/index',
     })
   }
 })

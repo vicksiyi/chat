@@ -1,6 +1,6 @@
 const ws = require("nodejs-websocket");
 const Time = require("./utils/formatTimes");
-// 聊天
+// 大群聊天
 var user = []
 var server = ws.createServer(function (conn) {
     let name = conn.headers['name-userinfo'];
@@ -42,8 +42,8 @@ var server = ws.createServer(function (conn) {
             avatarurl: avatarUrl
         }, { type: 'add', content: '离开群聊' });
     })
-}).listen(8080, function () {
-    console.log('the ws port running');
+}).listen(8081, function () {
+    console.log('the ws port(8081) running');
 });
 
 function broadcast(user, msg) {
