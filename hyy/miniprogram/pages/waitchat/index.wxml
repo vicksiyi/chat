@@ -1,1 +1,12 @@
-<component-send placeholder="聊天对象ID" bind:change="inputChange" buttonName="搜索" value="{{inputValue}}" bind:send="search"></component-send>
+<component-send placeholder="聊天对象ID" color="#2d8cf0" bind:change="inputChange" buttonName="搜索" value="{{inputValue}}" bind:send="search"></component-send>
+<!-- 显示搜索出来的用户 -->
+<view wx:if="{{showList}}" class="list">
+  <view class="img">
+    <image src="{{searchUser.avatarUrl}}"></image>
+  </view>
+  <span>{{searchUser.name}}</span>
+  <view class="btn">
+    <button bindtap="click" loading="{{load}}">接入聊天</button>
+  </view>
+</view>
+<i-message id="message" />

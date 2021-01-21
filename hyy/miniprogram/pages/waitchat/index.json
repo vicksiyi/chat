@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "component-send": "../../component/send/send"
+    "component-send": "../../component/send/send",
+    "i-message": "../../dist/message/index"
   }
 }

@@ -338,7 +338,6 @@ Page({
   // 进入聊天
   resMes: function (_openid, _name, _avatarUrl) {
     console.log('进入房间提示');
-
   },
   // 开始心跳
   startHeartBeat: function () {

@@ -1,1 +1,43 @@
 /* miniprogram/pages/waitchat/index.wxss */
+.list{
+  width: 400rpx;
+  /* height: 400rpx; */
+  background: #2d8cf0;
+  border-radius: 10rpx;
+  margin: 100rpx auto;
+  text-align: center;
+  padding: 30rpx;
+}
+
+.list .img{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 50rpx auto;
+}
+
+.list image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 50rpx;
+  border-radius: 50%;
+}
+
+.list span{
+  font-size: 30rpx;
+  color: #fff;
+  font-family: cursive;
+}
+
+.list .btn{
+  width: 200rpx;
+  margin: 50rpx auto;
+  margin-bottom: 30rpx;
+}
+
+.list .btn button{
+  width: 200rpx;
+  height: 60rpx;
+  font-size: 25rpx;
+  color: #fff;
+  background: #19be6b;
+}
