@@ -22,16 +22,19 @@ Page({
       userInfo: {},
     },
     remind: {
-      wait: [{
-        name: "小薇",
-        openId: "ohUw65LWnKW9zw10EuOJFs7hNyqA",
-        avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/qs9tqGjWeibY6rCdnbWjd940nRXAxparoSGYFXBGumDInic93hjBsj9R58ygxmRMMictmbAGiciaFtqsXWTxxz4nqwQ/132"
-      }
-      ]
-    }
+      wait: []
+    },
+    height: 0
   },
   onShow: function () {
     let _this = this
+    // wx.getSystemInfo({
+    //   success(res) {
+    //     _this.setData({
+    //       height: res.windowHeight - 51
+    //     })
+    //   }
+    // })
     wx.getStorage({
       key: '_openid',
       success(res) {
@@ -89,11 +92,14 @@ Page({
     })
   },
   navwaitchat: function () {
-    clearTimeout(heartBeatTimeOut)
-    setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
-      clearTimeout(errorConnectTimeOut)
-    }, 2000)
-    wx.closeSocket()
+    // console.log('nav');
+    // console.log(heartBeatTimeOut);
+    // console.log(errorConnectTimeOut);
+    // clearTimeout(heartBeatTimeOut)
+    // setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
+    //   clearTimeout(errorConnectTimeOut)
+    // }, 2000)
+    // wx.closeSocket()
     wx.navigateTo({
       url: `../waitchat/index`,
     })
@@ -235,8 +241,10 @@ Page({
     })
     ws.onMessage(onMessage => {
       let data = JSON.parse(onMessage.data);
-      if (data.type == 'heart'){
-        console.log(data)
+      if (data.type == 'heart') {
+        _this.setData({
+          'remind.wait': data.link
+        })
       }
       // if (data.type == 'heart') {
       //   _this.setData({
@@ -265,10 +273,13 @@ Page({
   },
   onHide: function () {
     console.log('onHide')
+    console.log(heartBeatTimeOut)
+    console.log(errorConnectTimeOut)
     clearTimeout(heartBeatTimeOut)
     setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
       clearTimeout(errorConnectTimeOut)
     }, 2000)
+    console.log('clear');
     wx.closeSocket()
   }
 })

@@ -126,6 +126,7 @@
 .remind-list {
   height: auto;
   width: 100%;
+  margin-bottom: 100rpx;
 }
 
 .remind-list .card {
@@ -152,6 +153,8 @@
   font-size: 40rpx;
   padding: 20rpx;
   color: #ff9900;
+  width: 200rpx;
+  overflow: hidden;
 }
 
 .remind-list image {

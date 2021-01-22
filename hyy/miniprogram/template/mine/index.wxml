@@ -18,7 +18,7 @@
         <view class="img">
           <image src="{{item.avatarUrl}}"></image>
         </view>
-        <view class="msg"><span>{{item.name}}</span>等待接入...</view>
+        <view class="msg"><span>{{item.name}}</span>等待接入...<span>{{item.time}}</span></view>
       </view>
     </block>
   </view>

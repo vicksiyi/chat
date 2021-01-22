@@ -19,13 +19,19 @@ var server = ws.createServer(function (conn) {
         if (dataParse.type == 'heart') {
             conn.sendText(JSON.stringify({
                 ...dataParse, user,
-                'link': link[conn.headers['openid-userinfo']],
+                'link': link[openId],
                 room
             }))
+            console.log(link[openId]);
         }
         else if (dataParse.type == 'link') {   // 接入
             let to_openid = dataParse.to_openid;
-            link[to_openid].push(conn.headers['openid-userinfo']);
+            link[to_openid].push({
+                name: name,
+                openId: openId,
+                avatarUrl: avatarUrl,
+                time: dataParse.time.split(' ')[1]
+            });
             console.log(link);
         }
         else if (dataParse.type == 'add') {     // 进入房间

@@ -1,6 +1,7 @@
 // miniprogram/pages/waitchat/index.js
 const app = getApp();
 const { $Message } = require('../../dist/base/index');
+const formatTime = require('../../utils/time').formatTime;
 
 const myUrl = `ws://${app.ip}:8081` // websocket链接
 var ws // socket发送的消息队列
@@ -90,7 +91,8 @@ Page({
     })
     let data = {
       type: 'link',
-      to_openid: e.currentTarget.dataset.openid
+      to_openid: e.currentTarget.dataset.openid,
+      time: formatTime(new Date())
     }
     this.sendSocketMessage({
       msg: JSON.stringify(data),
@@ -252,8 +254,7 @@ Page({
       // console.log(res, "接收到了消息")
     })
   },
-  onHide: function () {
-    console.log('onHide')
+  onUnload:function(){
     clearTimeout(heartBeatTimeOut)
     setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
       clearTimeout(errorConnectTimeOut)
