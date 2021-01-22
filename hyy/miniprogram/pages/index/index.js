@@ -22,7 +22,12 @@ Page({
       userInfo: {},
     },
     remind: {
-      wait: [{ name: "小薇", openId: "ohUw65LWnKW9zw10EuOJFs7hNyqA", avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/qs9tqGjWeibY…c93hjBsj9R58ygxmRMMictmbAGiciaFtqsXWTxxz4nqwQ/132" }]
+      wait: [{
+        name: "小薇",
+        openId: "ohUw65LWnKW9zw10EuOJFs7hNyqA",
+        avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/qs9tqGjWeibY6rCdnbWjd940nRXAxparoSGYFXBGumDInic93hjBsj9R58ygxmRMMictmbAGiciaFtqsXWTxxz4nqwQ/132"
+      }
+      ]
     }
   },
   onShow: function () {
@@ -96,7 +101,7 @@ Page({
   //与socket建立连接
   connectStart: function (_openid, _name, _avatarUrl) {
     var _this = this
-    app.ws = wx.connectSocket({
+    ws = wx.connectSocket({
       url: myUrl,
       header: {
         'content-type': 'application/json',
@@ -210,11 +215,11 @@ Page({
   // 监听socket
   deal: function () {
     let _this = this;
-    app.ws.onOpen(res => {
+    ws.onOpen(res => {
       socketOpen = true;
       console.log('监听 WebSocket 连接打开事件。', res)
     })
-    app.ws.onClose(onClose => {
+    ws.onClose(onClose => {
       console.log('监听 WebSocket 连接关闭事件。', onClose)
       // 防止退出找不到组件
       // $Message({
@@ -224,13 +229,15 @@ Page({
       socketOpen = false;
       // that.connectStart()
     })
-    app.ws.onError(onError => {
+    ws.onError(onError => {
       console.log('监听 WebSocket 错误。错误信息', onError)
       socketOpen = false
     })
-    app.ws.onMessage(onMessage => {
+    ws.onMessage(onMessage => {
       let data = JSON.parse(onMessage.data);
-      console.log(data);
+      if (data.type == 'heart'){
+        console.log(data)
+      }
       // if (data.type == 'heart') {
       //   _this.setData({
       //     user: data.user
@@ -256,8 +263,8 @@ Page({
       // console.log(res, "接收到了消息")
     })
   },
-  onUnload: function () {
-    console.log('onUnload')
+  onHide: function () {
+    console.log('onHide')
     clearTimeout(heartBeatTimeOut)
     setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
       clearTimeout(errorConnectTimeOut)

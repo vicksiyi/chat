@@ -17,7 +17,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputValue: 'ohUw65LWnKW9zw10EuOJFs7hNyqA',
+    inputValue: 'ohUw65OnZGzhJIKGwEQo9IYNX6Kw',
     user: [],
     searchUser: {},
     showList: false,
@@ -27,7 +27,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
     let _this = this
     wx.getStorage({
       key: '_openid',
@@ -84,9 +84,19 @@ Page({
       type: 'warning'
     })
   },
-  click: function () {
+  click: function (e) {
     this.setData({
       load: true
+    })
+    let data = {
+      type: 'link',
+      to_openid: e.currentTarget.dataset.openid
+    }
+    this.sendSocketMessage({
+      msg: JSON.stringify(data),
+      success: function (res) {
+        console.log(res)
+      }
     })
   },
   inputChange: function (e) {
@@ -242,8 +252,8 @@ Page({
       // console.log(res, "接收到了消息")
     })
   },
-  onUnload: function () {
-    console.log('onUnload')
+  onHide: function () {
+    console.log('onHide')
     clearTimeout(heartBeatTimeOut)
     setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
       clearTimeout(errorConnectTimeOut)

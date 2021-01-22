@@ -1,22 +1,21 @@
 // miniprogram/pages/chat/index.js
 const app = getApp();
 var wxst = function () { }
-const myUrl = `ws://${app.ip}:8080` // websocket链接
+const myUrl = `ws://${app.ip}:8081` // websocket链接
 const { $Message } = require('../../dist/base/index');
 const formatTime = require('../../utils/time').formatTime;
 
-var ws // socket发送的消息队列
+var chatWs // socket发送的消息队列
 var socketMsgQueue = []
 var socketOpen = true // 判断心跳变量
 var heart = ''  // 心跳失败次数
-var heartBeatFailCount = 0 // 终止心跳
-var heartBeatTimeOut = null; // 终止重新连接
+var chatHeartBeatFailCount = 0 // 终止心跳
+var chatHeartBeatTimeOut = null; // 终止重新连接
 var connectSocketTimeOut = null;
-var voiceInterval = null
+var chatVoiceInterval = null
 const recorderManager = wx.getRecorderManager()
 var errorConnectTimeOut = null;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -178,7 +177,7 @@ Page({
           recorderManager.onStart(() => {
             console.log('recorder start')
           })
-          voiceInterval = setInterval(() => {
+          chatVoiceInterval = setInterval(() => {
             _this.setData({
               num: _this.data.num + 1,
             })
@@ -199,7 +198,7 @@ Page({
     })
   },
   voiceClear: function () {
-    clearInterval(voiceInterval)
+    clearInterval(chatVoiceInterval)
     recorderManager.stop() // 结束录音
     this.setData({
       showVoice: false,
@@ -208,7 +207,7 @@ Page({
   },
   voiceSend: async function () {
     let _this = this;
-    clearInterval(voiceInterval)
+    clearInterval(chatVoiceInterval)
     recorderManager.stop()
     let data = await this.getVoice();
     wx.getFileSystemManager().readFile({
@@ -284,7 +283,7 @@ Page({
   //与socket建立连接
   connectStart: function (_openid, _name, _avatarUrl) {
     var _this = this
-    ws = wx.connectSocket({
+    chatWs = wx.connectSocket({
       url: myUrl,
       header: {
         'content-type': 'application/json',
@@ -338,6 +337,12 @@ Page({
   // 进入聊天
   resMes: function (_openid, _name, _avatarUrl) {
     console.log('进入房间提示');
+    let data = {
+      type: 'add'
+    }
+    this.sendSocketMessage({
+      msg: JSON.stringify(data)
+    })
   },
   // 开始心跳
   startHeartBeat: function () {
@@ -358,7 +363,7 @@ Page({
       msg: JSON.stringify(xtData),
       success: function (res) {
         if (heart) {
-          heartBeatTimeOut = setTimeout(() => {
+          chatHeartBeatTimeOut = setTimeout(() => {
             _this.heartBeat();
           }, 5000);
         }
@@ -371,17 +376,17 @@ Page({
         _this.setData({
           user: []
         })
-        if (heartBeatFailCount > 2) {
+        if (chatHeartBeatFailCount > 2) {
           // 重连
           console.log('socket心跳失败')
           _this.connectStart(_this.data._openid, _this.data._name, _this.data._avatarUrl);
         }
         if (heart) {
-          heartBeatTimeOut = setTimeout(() => {
+          chatHeartBeatTimeOut = setTimeout(() => {
             _this.heartBeat();
           }, 5000);
         }
-        heartBeatFailCount++;
+        chatHeartBeatFailCount++;
       },
     });
   },
@@ -409,11 +414,11 @@ Page({
   // 监听socket
   deal: function () {
     let _this = this;
-    ws.onOpen(res => {
+    chatWs.onOpen(res => {
       socketOpen = true;
       console.log('监听 WebSocket 连接打开事件。', res)
     })
-    ws.onClose(onClose => {
+    chatWs.onClose(onClose => {
       console.log('监听 WebSocket 连接关闭事件。', onClose)
       // 防止退出找不到组件
       // $Message({
@@ -423,17 +428,17 @@ Page({
       socketOpen = false;
       // that.connectStart()
     })
-    ws.onError(onError => {
+    chatWs.onError(onError => {
       console.log('监听 WebSocket 错误。错误信息', onError)
       socketOpen = false
     })
-    ws.onMessage(onMessage => {
+    chatWs.onMessage(onMessage => {
       let data = JSON.parse(onMessage.data);
       if (data.type == 'heart') {
         _this.setData({
-          user: data.user
+          user: data.room
         })
-      } else if (data.type == 'add') {
+      } else if (data.type == 'add' || data.type == 'leave') {
         _this.setData({
           showUser: true,
           addUser: data
@@ -454,9 +459,18 @@ Page({
       // console.log(res, "接收到了消息")
     })
   },
-  onUnload: function () {
-    console.log('onUnload')
-    clearTimeout(heartBeatTimeOut)
+  onUnload:function(){
+    console.log('onUnLoad')
+    this.clear();
+  },
+  clear:function(){
+    let data = {
+      type: 'leave'
+    }
+    this.sendSocketMessage({
+      msg: JSON.stringify(data)
+    })
+    clearTimeout(chatHeartBeatTimeOut)
     setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
       clearTimeout(errorConnectTimeOut)
     }, 2000)

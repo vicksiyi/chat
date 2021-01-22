@@ -4,9 +4,6 @@
       在线聊天(等待接入版)
     </view>
     <view class="item" hover-class="btn-item">
-      一对一聊天(历史+即时)
-    </view>
-    <view class="item" hover-class="btn-item">
       自定义群聊
     </view>
     <view class="item" bindtap="navonechat" hover-class="btn-item">

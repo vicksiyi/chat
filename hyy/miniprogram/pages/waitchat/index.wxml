@@ -6,7 +6,7 @@
   </view>
   <span>{{searchUser.name}}</span>
   <view class="btn">
-    <button bindtap="click" loading="{{load}}">接入聊天</button>
+    <button bindtap="click" data-Openid="{{searchUser.openId}}"  loading="{{load}}">接入聊天</button>
   </view>
 </view>
 <i-message id="message" />
