@@ -2,12 +2,12 @@
   <view wx:if="{{float == 'left'}}" class="list left">
     <view class="header">
       <view class="img">
-        <image src="{{thumb}}"></image>
+        <image src="{{thumb}}" bindtap="copy" data-Openid="{{openid}}"></image>
       </view>
       <view class="name">{{name}}</view>
       <view class="time">{{time}}</view>
     </view>
-    <view wx:if="{{type == 'text' || type == '1v1Text'}}" class="content">
+    <view wx:if="{{type == 'text' || type == '1v1Text'}}"  class="content">
       {{content}}
     </view>
     <view wx:if="{{type == 'image' || type == '1v1Image'}}" class="content">
@@ -27,7 +27,7 @@
       <view class="time">{{time}}</view>
       <view class="name">{{name}}</view>
       <view class="img">
-        <image src="{{thumb}}"></image>
+        <image src="{{thumb}}" bindtap="copy" data-Openid="{{openid}}"></image>
       </view>
     </view>
     <view wx:if="{{type == 'text' || type == '1v1Text'}}" class="right-content">

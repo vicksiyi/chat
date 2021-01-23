@@ -3,7 +3,7 @@
     scroll-with-animation="true" style="height:{{height}}px;">
     <component-list>
       <block wx:for="{{content}}">
-        <component-list-item name="{{item.name}}" type="{{item.type}}" thumb="{{item.avatarurl}}" time="{{item.time}}"
+        <component-list-item name="{{item.name}}" type="{{item.type}}" openid="{{item.openid}}" bind:copy="copy" thumb="{{item.avatarurl}}" time="{{item.time}}"
           content="{{item.content}}" float="{{item.openid == _openid ? '':'left'}}">
         </component-list-item>
       </block>

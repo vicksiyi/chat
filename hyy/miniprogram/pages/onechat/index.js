@@ -53,6 +53,9 @@ Page({
         })
       }
     })
+    wx.setNavigationBarTitle({
+      title: dataUser.name
+    })
     wx.getStorage({
       key: '_openid',
       success: function (res) {
@@ -174,32 +177,44 @@ Page({
     this.setData({
       showVoice: true
     })
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.record']) {
-          recorderManager.start()
-          recorderManager.onStart(() => {
-            console.log('recorder start')
-          })
-          chatVoiceInterval = setInterval(() => {
-            _this.setData({
-              num: _this.data.num + 1,
-            })
-            if (_this.data.num >= 50) { // 最多录音50s
-              this.voiceSend();
-            }
-          }, 1000)
-        } else {
-          $Message({
-            content: '请打开『右上角』->『设置』开启录音权限',
-            type: 'warning'
-          })
-          _this.setData({
-            showVoice: false
-          })
-        }
-      }
+    recorderManager.start()
+    recorderManager.onStart(() => {
+      console.log('recorder start')
     })
+    chatVoiceInterval = setInterval(() => {
+      _this.setData({
+        num: _this.data.num + 1,
+      })
+      if (_this.data.num >= 50) { // 最多录音50s
+        this.voiceSend();
+      }
+    }, 1000)
+    // wx.getSetting({
+    //   success: function (res) {
+    //     if (res.authSetting['scope.record']) {
+    //       recorderManager.start()
+    //       recorderManager.onStart(() => {
+    //         console.log('recorder start')
+    //       })
+    //       chatVoiceInterval = setInterval(() => {
+    //         _this.setData({
+    //           num: _this.data.num + 1,
+    //         })
+    //         if (_this.data.num >= 50) { // 最多录音50s
+    //           this.voiceSend();
+    //         }
+    //       }, 1000)
+    //     } else {
+    //       $Message({
+    //         content: '请打开『右上角』->『设置』开启录音权限',
+    //         type: 'warning'
+    //       })
+    //       _this.setData({
+    //         showVoice: false
+    //       })
+    //     }
+    //   }
+    // })
   },
   voiceClear: function () {
     clearInterval(chatVoiceInterval)

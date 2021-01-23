@@ -18,7 +18,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputValue: 'ohUw65OnZGzhJIKGwEQo9IYNX6Kw',
+    inputValue: '',
     user: [],
     searchUser: {},
     showList: false,

@@ -29,6 +29,10 @@ Component({
     type: {
       type: String,
       value: ''
+    },
+    openid: {
+      type: String,
+      value: ''
     }
   },
 
@@ -125,6 +129,9 @@ Component({
         // msg: '暂停',
         status: 'stop'
       })
+    },
+    copy: function (event) {
+      this.triggerEvent('copy', event.currentTarget.dataset.openid);
     }
   }
 })

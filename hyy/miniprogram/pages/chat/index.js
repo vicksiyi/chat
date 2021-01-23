@@ -79,6 +79,17 @@ Page({
       }
     })
   },
+  copy: function (e) {
+    wx.setClipboardData({
+      data: e.detail,
+      success(res) {
+        $Message({
+          content: 'ID复制成功，可返回进行1v1聊天',
+          type: 'success'
+        });
+      }
+    })
+  },
   inputChange: function (e) {
     this.setData({
       inputValue: e.detail.detail.value
@@ -170,32 +181,44 @@ Page({
     this.setData({
       showVoice: true
     })
-    wx.getSetting({
-      success: function (res) {
-        if (res.authSetting['scope.record']) {
-          recorderManager.start()
-          recorderManager.onStart(() => {
-            console.log('recorder start')
-          })
-          chatVoiceInterval = setInterval(() => {
-            _this.setData({
-              num: _this.data.num + 1,
-            })
-            if (_this.data.num >= 50) { // 最多录音50s
-              this.voiceSend();
-            }
-          }, 1000)
-        } else {
-          $Message({
-            content: '请打开『右上角』->『设置』开启录音权限',
-            type: 'warning'
-          })
-          _this.setData({
-            showVoice: false
-          })
-        }
-      }
+    recorderManager.start()
+    recorderManager.onStart(() => {
+      console.log('recorder start')
     })
+    chatVoiceInterval = setInterval(() => {
+      _this.setData({
+        num: _this.data.num + 1,
+      })
+      if (_this.data.num >= 50) { // 最多录音50s
+        this.voiceSend();
+      }
+    }, 1000)
+    // wx.getSetting({
+    //   success: function (res) {
+    //     if (res.authSetting['scope.record']) {
+    //       recorderManager.start()
+    //       recorderManager.onStart(() => {
+    //         console.log('recorder start')
+    //       })
+    //       chatVoiceInterval = setInterval(() => {
+    //         _this.setData({
+    //           num: _this.data.num + 1,
+    //         })
+    //         if (_this.data.num >= 50) { // 最多录音50s
+    //           this.voiceSend();
+    //         }
+    //       }, 1000)
+    //     } else {
+    //       $Message({
+    //         content: '请打开『右上角』->『设置』开启录音权限',
+    //         type: 'warning'
+    //       })
+    //       _this.setData({
+    //         showVoice: false
+    //       })
+    //     }
+    //   }
+    // })
   },
   voiceClear: function () {
     clearInterval(chatVoiceInterval)
@@ -459,11 +482,11 @@ Page({
       // console.log(res, "接收到了消息")
     })
   },
-  onUnload:function(){
+  onUnload: function () {
     console.log('onUnLoad')
     this.clear();
   },
-  clear:function(){
+  clear: function () {
     let data = {
       type: 'leave'
     }
