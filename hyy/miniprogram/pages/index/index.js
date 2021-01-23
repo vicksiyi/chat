@@ -104,6 +104,23 @@ Page({
       url: `../waitchat/index`,
     })
   },
+  navmyself: function (res) {
+    $Message({
+      content: '敬请期待',
+      type: 'warning'
+    })
+  },
+  connect: function (e) {
+    // console.log(e.currentTarget.dataset.index)
+    let connect_id = this.data.remind.wait[e.currentTarget.dataset.index].openId;
+    let data = {
+      connect_id: connect_id,
+      type: 'connect'
+    }
+    this.sendSocketMessage({
+      msg: JSON.stringify(data)
+    })
+  },
   //与socket建立连接
   connectStart: function (_openid, _name, _avatarUrl) {
     var _this = this
@@ -244,6 +261,23 @@ Page({
       if (data.type == 'heart') {
         _this.setData({
           'remind.wait': data.link
+        })
+      }
+      if (data.type == 'oneMsg') {
+        let userData = {}
+        for (let i = 0; i < this.data.remind.wait.length; i++) {
+          if (this.data.remind.wait[i].openId == data.id) {
+            userData = this.data.remind.wait[i]
+            break;
+          }
+        }
+        clearTimeout(heartBeatTimeOut)
+        setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
+          clearTimeout(errorConnectTimeOut)
+        }, 2000)
+        wx.closeSocket()
+        wx.navigateTo({
+          url: `../onechat/index?user=${JSON.stringify(userData)}`,
         })
       }
       // if (data.type == 'heart') {

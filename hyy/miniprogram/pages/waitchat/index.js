@@ -86,6 +86,13 @@ Page({
     })
   },
   click: function (e) {
+    if (this.data.load) {
+      $Message({
+        content: '接入ing',
+        type: 'warning'
+      })
+      return;
+    }
     this.setData({
       load: true
     })
@@ -243,18 +250,35 @@ Page({
     })
     ws.onMessage(onMessage => {
       let data = JSON.parse(onMessage.data);
-      console.log(data);
       if (data.type == 'heart') {
         _this.setData({
           user: data.user
         })
-      } else {
-        console.log('其他消息')
+      }
+      if (data.type == 'oneMsg') {
+        let userData = {}
+        for (let i = 0; i < this.data.user.length; i++) {
+          if (this.data.user[i].openId == data.id) {
+            userData = this.data.user[i]
+            break;
+          }
+        }
+        clearTimeout(heartBeatTimeOut)
+        setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
+          clearTimeout(errorConnectTimeOut)
+        }, 2000)
+        wx.closeSocket()
+        _this.setData({
+          load: false
+        })
+        wx.navigateTo({
+          url: `../onechat/index?user=${JSON.stringify(userData)}`,
+        })
       }
       // console.log(res, "接收到了消息")
     })
   },
-  onUnload:function(){
+  onUnload: function () {
     clearTimeout(heartBeatTimeOut)
     setTimeout(() => {  // 防止2000ms还没过就点击返回导致(clear一个空对象)
       clearTimeout(errorConnectTimeOut)

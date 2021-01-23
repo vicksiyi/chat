@@ -3,7 +3,7 @@
     <view class="item" bindtap="navwaitchat" hover-class="btn-item">
       在线聊天(等待接入版)
     </view>
-    <view class="item" hover-class="btn-item">
+    <view class="item" bindtap="navmyself" hover-class="btn-item">
       自定义群聊
     </view>
     <view class="item" bindtap="navonechat" hover-class="btn-item">
@@ -14,7 +14,7 @@
 <template name="remind">
   <view class="remind-list">
     <block wx:for="{{remind.wait}}">
-      <view class="card">
+      <view bindtap="connect" data-Index="{{index}}" class="card">
         <view class="img">
           <image src="{{item.avatarUrl}}"></image>
         </view>

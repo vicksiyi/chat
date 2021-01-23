@@ -7,15 +7,15 @@
       <view class="name">{{name}}</view>
       <view class="time">{{time}}</view>
     </view>
-    <view wx:if="{{type == 'text'}}" class="content">
+    <view wx:if="{{type == 'text' || type == '1v1Text'}}" class="content">
       {{content}}
     </view>
-    <view wx:if="{{type == 'image'}}" class="content">
+    <view wx:if="{{type == 'image' || type == '1v1Image'}}" class="content">
       <view class="img">
         <image bindtap="showImage" src="{{content}}"></image>
       </view>
     </view>
-    <view wx:if="{{type == 'audio'}}" class="content" bindtap="audioPlay">
+    <view wx:if="{{type == 'audio' || type == '1v1Audio'}}" class="content" bindtap="audioPlay">
       <image bindtap="audioPlay" src="../../images/voiceyou.png"></image>
       <!-- <image wx:if="{{status == 'start'}}"  bindtap="audioPlay" src="../../images/voiceyou.png"></image>
       <image wx:if="{{status == 'continue'}}" bindtap="audioStop" src="../../images/continueyou.png"></image>
@@ -30,15 +30,15 @@
         <image src="{{thumb}}"></image>
       </view>
     </view>
-    <view wx:if="{{type == 'text'}}" class="right-content">
+    <view wx:if="{{type == 'text' || type == '1v1Text'}}" class="right-content">
       {{content}}
     </view>
-    <view wx:if="{{type == 'image'}}" class="right-content">
+    <view wx:if="{{type == 'image' || type == '1v1Image'}}" class="right-content">
       <view class="img">
         <image bindtap="showImage" src="{{content}}"></image>
       </view>
     </view>
-    <view wx:if="{{type == 'audio'}}" class="right-content">
+    <view wx:if="{{type == 'audio' || type == '1v1Audio'}}" class="right-content">
       <image bindtap="audioPlay" src="../../images/voiceme.png"></image>
       <!-- <image wx:if="{{status == 'start'}}" bindtap="audioPlay" src="../../images/voiceme.png"></image>
       <image wx:if="{{status == 'continue'}}" bindtap="audioContinue" src="../../images/continueme.png"></image>
