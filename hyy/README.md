@@ -1,12 +1,10 @@
-# 云开发 quickstart
+## :black_nib: 系统运行:pencil2:
+- dist包
 
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
+由于本系统组件库通过Iview来构建，那么此时需要到 GitHub 下载 iView Weapp 的代码，将 dist 目录拷贝到自己的项目中。
+效果如下：
 
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
+<img width="50%" align="middle" src="https://user-images.githubusercontent.com/39822906/157379164-95981247-8d66-4caf-b6ae-f5c7a6544f2f.png" />
 
-## 参考文档
-
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
+然后通过微信开发者工具打开->导入即可
 
