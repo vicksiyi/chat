@@ -222,6 +222,7 @@ var server = ws.createServer(function (conn) {
 
 ## :alarm_clock:  7、下一版本
 - 消息采用RSA加密
+- 代码混淆
 - 连接状态存储在Redis中
 - 聊天数据存储通过MongoDB
 - 封装代码，重构消息类型
